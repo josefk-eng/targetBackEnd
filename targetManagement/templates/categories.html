@@ -1,0 +1,80 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block  content %}
+
+
+
+            <!-- cart-area -->
+            <div class="cart-area pt-90 pb-90">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-7">
+                            <div class="cart-wrapper">
+                                <div class="table-responsive">
+                                    <table class="table mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th class="product-thumbnail"></th>
+                                                <th class="product-name">Category</th>
+                                                <th class="product-price">Description</th>
+                                                <th class="product-quantity">Date Added</th>
+                                                <th class="product-subtotal"></th>
+                                                <th class="product-delete"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for category in categories %}
+                                                <tr>
+                                                    <td class="product-thumbnail"><a href="shop-details.html"><img src="{% if category.image %}{{category.image.url}}{% endif %}" alt=""></a></td>
+                                                    <td class="product-name">
+                                                        <h4><a href="shop-details.html">{{category.name}}</a></h4>
+                                                    </td>
+                                                    <td class="product-price">{{category.description}}</td>
+                                                    <td class="product-quantity">{{category.date_added}}</td>
+                                                    <td class="product-delete"><a href="{% url 'deleteCategory' category.id %}"><i class="far fa-trash-alt"></i></a></td>
+                                                </tr>
+
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            {% comment %} <div class="shop-cart-bottom">
+                                <div class="cart-coupon">
+                                    <form action="#">
+                                        <input type="text" placeholder="Enter Coupon Code...">
+                                        <button class="btn">Apply Coupon</button>
+                                    </form>
+                                </div>
+                                <div class="continue-shopping">
+                                    <a href="shop.html" class="btn">update Cart</a>
+                                </div>
+                            </div> {% endcomment %}
+                        </div>
+                        <div class="col-xl-5 col-lg-12">
+                            <div class="shop-cart-total">
+                                <h3 class="title">Add a Category</h3>
+                                <div class="shop-cart-widget product-input">
+                                    <form action="{% url 'newCat' %}" method="POST">
+                                        {% csrf_token %}
+                                        <ul>
+                                            <li class="cart-total-amount"><span>Name</span> {{form.name}}</li>
+                                            <li class="cart-total-amount"><span>Description</span> {{form.description}}</li>
+                                            <li class="cart-total-amount"><span>Image</span> {{form.image}}</li>
+                                        </ul>
+                                        <button type="submit" class="btn">Add</button>
+                                    </form>
+                                    {% for message in messages %}
+                                        <p>{{message}}</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- cart-area-end -->
+
+
+
+{% endblock %}
