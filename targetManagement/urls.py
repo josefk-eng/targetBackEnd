@@ -2,12 +2,26 @@ from django.urls import path
 from . import views
 urlpatterns = [
     path('',views.index,name="index"),
-    path('categories',views.categories,name='categories'),
+    path('category/<id>',views.categories,name='category'),
+    path('seasons',views.seasons,name='seasons'),
+    path('newSeason',views.newSeason,name='newSeason'),
+    path('newBanner/<id>',views.newBanner,name='newBanner'),
+    path('banners',views.banners,name='banners'),
+    path('editBanner/<id>/',views.editBanner,name='editBanner'),
     path('reports',views.reports,name="reports"),
     path('newCategory', views.addCategory,name='newCat'),
     path('deleteCategory/<id>/', views.deleteCategory,name='deleteCategory'),
     path('deleteItem/<id>/', views.deleteItem,name='deleteItem'),
+    path('deleteSeason/<id>/', views.deleteSeason,name='deleteSeason'),
+    path('deleteBanner/<id>/', views.deleteBanner,name='deleteBanner'),
     path('newItem', views.addItem,name='newItem'),
+    path('create/', views.BookCreateView.as_view(), name='create_book'),
     path('login', views.login,name='login'),
-    path('logout', views.logout,name='logout')
+    path('logout', views.logout,name='logout'),
+    path('uploadcsv', views.uploadcsv,name='uploadcsv'),
+    path('toggle_visibility/<int:prod_id>/<path:route>', views.toggle_visibility,name='toggle_visibility'),
+    path('toggle_cat_visibility/<int:cat_id>/<path:route>', views.toggle_cat_visibility,name='toggle_cat_visibility'),
+    path('edit/<int:id>/<int:cat>', views.edit_page,name='edit'),
+    path('products/', views.products, name='products'),
+    path('update_product/<int:pk>', views.ProductUpdateView.as_view(), name='update_product'),
 ]

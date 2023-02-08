@@ -2,8 +2,6 @@
 {% load static %}
 {% block  content %}
 
-
-
             <!-- cart-area -->
             <div class="cart-area pt-90 pb-90">
                 <div class="container">
@@ -55,11 +53,12 @@
                             <div class="shop-cart-total">
                                 <h3 class="title">Add a Category</h3>
                                 <div class="shop-cart-widget product-input">
-                                    <form action="{% url 'newCat' %}" method="POST">
+                                    <form action="{% url 'newCat' %}" enctype="multipart/form-data" method="POST">
                                         {% csrf_token %}
                                         <ul>
                                             <li class="cart-total-amount"><span>Name</span> {{form.name}}</li>
                                             <li class="cart-total-amount"><span>Description</span> {{form.description}}</li>
+                                            <li class="cart-total-amount"><span>Season</span> {{form.season}}</li>
                                             <li class="cart-total-amount"><span>Image</span> {{form.image}}</li>
                                         </ul>
                                         <button type="submit" class="btn">Add</button>
@@ -74,7 +73,5 @@
                 </div>
             </div>
             <!-- cart-area-end -->
-
-
 
 {% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block  content %}
+
+            <!-- cart-area -->
+            <div class="cart-area pt-90 pb-90">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-7">
+                            <div class="cart-wrapper">
+                                <div class="table-responsive">
+                                    <table class="table mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th class="product-name">Season</th>
+                                                <th class="product-price">IsActive</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for season in seasons %}
+                                                <tr>
+                                                    <td class="product-name">
+                                                        <h4><a href="shop-details.html">{{season.name}}</a></h4>
+                                                    </td>
+                                                    <td class="product-price">{{season.isActive}}</td>
+                                                    <td class="product-delete"><a href="{% url 'deleteSeason' season.id %}"><i class="far fa-trash-alt"></i></a></td>
+                                                </tr>
+
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            {% comment %} <div class="shop-cart-bottom">
+                                <div class="cart-coupon">
+                                    <form action="#">
+                                        <input type="text" placeholder="Enter Coupon Code...">
+                                        <button class="btn">Apply Coupon</button>
+                                    </form>
+                                </div>
+                                <div class="continue-shopping">
+                                    <a href="shop.html" class="btn">update Cart</a>
+                                </div>
+                            </div> {% endcomment %}
+                        </div>
+                        <div class="col-xl-5 col-lg-12">
+                            <div class="shop-cart-total">
+                                <h3 class="title">Add a Season</h3>
+                                <div class="shop-cart-widget product-input">
+                                    <form action="{% url 'newSeason' %}" method="POST">
+                                        {% csrf_token %}
+                                        <ul>
+                                            <li class="cart-total-amount"><span>Name</span> {{form.name}}</li>
+                                            <li class="cart-total-amount"><span>Is Active</span> {{form.isActive}}</li>
+                                        </ul>
+                                        <button type="submit" class="btn">Add</button>
+                                    </form>
+                                    {% for message in messages %}
+                                        <p>{{message}}</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- cart-area-end -->
+
+{% endblock %}

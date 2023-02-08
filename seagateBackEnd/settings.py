@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure-*z+%37^7+2&u+evq1y@169tts#g*e86&dkiqq4%2-pw942wou$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['3.8.208.86']
+ALLOWED_HOSTS = ['3.8.208.86','127.0.0.1','10.0.2.2','192.168.139.11','0.0.0.0']
+
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 20240
 
 
 # Application definition
@@ -41,7 +43,15 @@ INSTALLED_APPS = [
     'targetManagement',
     'rest_framework',
     'api',
+    'push_notifications',
+    'bootstrap_modal_forms',
 ]
+
+PUSH_NOTIFICATIONS_SETTINGS = {
+        "FCM_API_KEY": "AIzaSyC9dEm5NQQ67V9cGLMsscpxxyAlbQKWj2Q",
+        "GCM_API_KEY": "AIzaSyC9dEm5NQQ67V9cGLMsscpxxyAlbQKWj2Q",
+        "APNS_CERTIFICATE": "/path/to/your/certificate.pem",
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
